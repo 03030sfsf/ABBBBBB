@@ -97,33 +97,93 @@
         }
 
         /* 當季農產品區樣式 */
-        .seasonal-products {
-            padding: 50px 20px;
-            text-align: center;
-        }
-        .product-card {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            max-width: 600px;
-            margin: 20px auto;
-            position: relative;
-        }
-        .product-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.5s ease-in-out;
-        }
-        .product-card:hover .product-image {
-            transform: scale(1.1);
-        }
-        .product-info {
-            padding: 20px;
-            text-align: left;
-        }
+.seasonal-products {
+    padding: 50px 20px;
+    text-align: center;
+}
 
+/* 卡片容器使用 Flexbox 來並排顯示 */
+.product-cards-container {
+    display: flex;
+    flex-wrap: wrap; /* 讓卡片在小螢幕上換行 */
+    justify-content: center; /* 使卡片在容器中居中 */
+    gap: 20px; /* 卡片之間的間距 */
+}
+
+/* 單一卡片樣式 */
+.product-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 45%;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
+    
+}
+
+/* 卡片圖片樣式 */
+.product-image {
+    width: 100%;
+    height: 300px; /* 調整高度，使文字背景和圖片不衝突 */
+    object-fit: cover;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* 懸停時圖片放大，並確保不影響文字 */
+.product-card:hover .product-image {
+    transform: scale(1.1);
+}
+
+/* 初始狀態：背景透明，文字隱藏 */
+.product-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));  /* 完全透明 */
+    color: white;
+    box-sizing: border-box;
+    opacity: 0;  /* 文字與背景透明 */
+    transition: background 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+/* 懸停時：黑色漸層與文字淡入 */
+.product-card:hover .product-info {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));  /* 黑色漸層淡入 */
+    opacity: 1;  /* 文字與背景完全顯示 */
+}
+
+/* 懸停時圖片放大 */
+.product-card:hover .product-image {
+    transform: scale(1.1);
+}
+
+
+/* 卡片標題樣式 */
+.product-info h3 {
+    margin-top: 0;
+}
+
+/* 卡片描述文字樣式 */
+.product-info p {
+    margin-bottom: 0;
+}
+
+/* 手機視圖優化：當寬度小於 600px 時，每張卡片占滿整行 */
+@media (max-width: 600px) {
+    .product-card {
+        width: 100%; /* 手機螢幕上每張卡片佔滿整行 */
+    }
+}
+/* 文字標題和描述保留原樣式 */
+.product-info h3 {
+    margin-top: 0;
+}
+.product-info p {
+    margin-bottom: 0;
+}
         /* 食農教育、特色、畫廊樣式 */
         .about, .features, .gallery {
             padding: 40px 20px;
@@ -205,6 +265,83 @@
         .button:hover {
             background: #364d36;
         }
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* 區塊容器 */
+.section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 30px;
+}
+
+/* 第一區塊 (正常排列) */
+#section1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 30px;
+    flex-direction: row;
+}
+
+/* 第二區塊 (反向排列) */
+#section2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 30px;
+    flex-direction: row-reverse;
+}
+
+/* 圖片容器 */
+.image-box {
+    width: 500px; /* 圖片容器寬度 */
+    height: 350px; /* 圖片容器高度 */
+    border: 2px solid #2f4f4f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden; /* 確保圖片不會超出容器邊框 */
+}
+
+/* 圖片樣式 */
+.image-box img {
+    width: 100%; /* 確保圖片填滿容器 */
+    height: 100%; /* 確保圖片填滿容器 */
+    object-fit: cover; /* 保持圖片比例並裁剪多餘部分 */
+    border-radius: 10px;
+}
+
+
+/* 文字容器 */
+#section1 .text-box,
+#section2 .text-box {
+    max-width: 600px;
+    color: #2f4f4f;
+}
+
+#section1 .text-box h2,
+#section2 .text-box h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#section1 .text-box p,
+#section2 .text-box p {
+    font-size: 18px;
+    text-align: justify;
+}
+
     </style>
 </head>
 <body>
@@ -222,16 +359,21 @@
     <!-- 導航區 -->
     <nav class="navigation">
         <ul>
+            <li><a href="#gallery">農作物</a></li>
             <li><a href="#about">食農教育</a></li>
             <li><a href="#features">農場特色</a></li>
-            <li><a href="#gallery">農作物</a></li>
             <li><a href="#contact">聯絡我們</a></li>
         </ul>
     </nav>
 
     <!-- 當季農產品區 -->
-    <section id="seasonal-products" class="seasonal-products">
-        <h2>當季盛產農產品</h2>
+    <section id="gallery" class="gallery">
+<section id="seasonal-products" class="seasonal-products">
+    <h2>當季盛產農產品</h2>
+
+    <!-- 卡片容器，使用 Flexbox 來並排顯示卡片 -->
+    <div class="product-cards-container">
+        <!-- 第一張卡片: 無毒種植小黃瓜 -->
         <div class="product-card">
             <img src="image/product1.jpg" alt="農產品圖片" class="product-image">
             <div class="product-info">
@@ -239,13 +381,29 @@
                 <p>甜美多汁，來自幸福農場的當季有機小黃瓜，無化肥、無農藥、採自然農法種植。</p>
             </div>
         </div>
-    </section>
 
-    <!-- 食農教育區 -->
-    <section id="about" class="about">
-        <h2>食農教育</h2>
-        <p>我們每月開辦兩梯次的食農教育，從生產到收成再到餐桌，小孩大人一起認識蔬果 健康吃。</p>
-    </section>
+        <!-- 第二張卡片: 哈密瓜 -->
+        <div class="product-card">
+            <img src="image/product2.jpg" alt="哈密瓜圖片" class="product-image">
+            <div class="product-info">
+                <h3>甜美哈密瓜</h3>
+                <p>香氣四溢、肉質細緻，來自當地農場的有機哈密瓜，甘甜清新，夏季必備水果。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- 食農教育區 -->
+<section id="about" class="about">
+    <h2>食農教育</h2>
+    <p>我們每月開辦兩梯次的食農教育，從生產到收成再到餐桌，小孩大人一起認識蔬果 健康吃。</p>
+    
+    <!-- YouTube 影片嵌入 -->
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/XAQ14-BoRlU?si=7Dy_-v4vQZNt3mUn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</section>
+
 
     <!-- 農場特色區 -->
     <section id="features" class="features">
@@ -256,9 +414,47 @@
             <li>適合全家人參觀的活動</li>
         </ul>
     </section>
+    <html lang="zh-TW">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>圖文佈局範例</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <!-- 第一區塊 -->
+        <div id="section1" class="section">
+            <div class="image-box">
+                <img src="image/image001.jpg" alt="第一區塊圖片">
+            </div>
+            <div class="text-box">
+                <h2>文字文字</h2>
+                <p>
+                    文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                    文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                    文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                </p>
+            </div>
+        </div>
+        <hr>
+        <!-- 第二區塊 -->
+<div id="section2" class="section reverse">
+    <div class="text-box">
+                <h2>文字文字</h2>
+                <p>
+                    文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                    文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                    文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+                </p>
+            </div>
+            <div class="image-box">
+                <img src="image/image002.jpg" alt="第二區塊圖片">
+            </div>
+        </div>
+    
+
 
     <!-- 農場畫廊 -->
-    <section id="gallery" class="gallery">
         <h2>農場畫廊</h2>
         <div class="gallery-container">
             <div class="gallery-item">
