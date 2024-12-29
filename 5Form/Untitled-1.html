@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青時代溫室</title>
+    <style>
+        /* 全局樣式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
+        }
+
+        /* Hero 區塊樣式 */
+        .hero {
+            position: relative;
+            background: url('image/farm-hero.jpg') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            justify-content: center; /* 水平置中 */
+            align-items: center; /* 垂直置中 */
+            flex-direction: column;
+            padding: 150px 20px; /* 增加上下內邊距，讓背景高度更高 */
+            min-height: 40vh; /* 保證背景至少占據40%的可視區域高度 */
+        }
+
+        .hero h1, .hero p {
+            z-index: 2;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        .slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        /* 導航區樣式 */
+        .navigation {
+            background: #364d36;
+            color: white;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .navigation ul {
+            list-style: none;
+            margin: 0;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+        }
+        .navigation li {
+            margin: 0 20px;
+        }
+        .navigation a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .navigation a:hover {
+            color: #b0f4b0;
+        }
+
+        /* 當季農產品區樣式 */
+        .seasonal-products {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 600px;
+            margin: 20px auto;
+            position: relative;
+        }
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease-in-out;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+        .product-info {
+            padding: 20px;
+            text-align: left;
+        }
+
+        /* 食農教育、特色、畫廊樣式 */
+        .about, .features, .gallery {
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .features ul, .gallery-container {
+            list-style: none;
+            padding: 0;
+        }
+        .features li {
+            margin: 10px 0;
+        }
+
+        /* 農場畫廊樣式 */
+        .gallery-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            width: 30%;
+            border-radius: 10px;
+            aspect-ratio: 16 / 9; /* 強制裁切為16:9比例 */
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 裁切圖片內容使其填滿 */
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 100%); /* 橫向置中 */
+            width: 100%;
+            background: linear-gradient(to top, rgb(0, 0, 0), transparent);
+            color: #ffffff;
+            padding: 30px; /* 調整間距 */
+            text-align: center;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover .caption {
+            transform: translate(-50%, 0); /* 顯示文字 */
+            
+        }
+        .caption {
+    font-size: 1.5rem; /* 修改字體大小，1.2rem 為範例 */
+}
+
+
+        /* 聯絡我們區樣式 */
+        .contact {
+            background: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .button {
+            text-decoration: none;
+            color: white;
+            background: #668e66;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background: #364d36;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero 區塊 -->
+    <header class="hero">
+        <div class="slideshow">
+            <div class="slide active" style="background: url('image/image1.jpg') no-repeat center center/cover;"></div>
+            <div class="slide" style="background: url('image/image2.jpg') no-repeat center center/cover;"></div>
+            <div class="slide" style="background: url('image/image3.jpg') no-repeat center center/cover;"></div>
+        </div>
+        <h1>歡迎來到青時代溫室</h1>
+        <p>採用自然農法 無毒 健康 永續 吃的安心是愛護自己最大的保障。</p>
+    </header>
+
+    <!-- 導航區 -->
+    <nav class="navigation">
+        <ul>
+            <li><a href="#about">食農教育</a></li>
+            <li><a href="#features">農場特色</a></li>
+            <li><a href="#gallery">農作物</a></li>
+            <li><a href="#contact">聯絡我們</a></li>
+        </ul>
+    </nav>
+
+    <!-- 當季農產品區 -->
+    <section id="seasonal-products" class="seasonal-products">
+        <h2>當季盛產農產品</h2>
+        <div class="product-card">
+            <img src="image/product1.jpg" alt="農產品圖片" class="product-image">
+            <div class="product-info">
+                <h3>無毒種植小黃瓜</h3>
+                <p>甜美多汁，來自幸福農場的當季有機小黃瓜，無化肥、無農藥、採自然農法種植。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 食農教育區 -->
+    <section id="about" class="about">
+        <h2>食農教育</h2>
+        <p>我們每月開辦兩梯次的食農教育，從生產到收成再到餐桌，小孩大人一起認識蔬果 健康吃。</p>
+    </section>
+
+    <!-- 農場特色區 -->
+    <section id="features" class="features">
+        <h2>農場特色</h2>
+        <ul>
+            <li>健康飼養的動物</li>
+            <li>手工製作的有機產品</li>
+            <li>適合全家人參觀的活動</li>
+        </ul>
+    </section>
+
+    <!-- 農場畫廊 -->
+    <section id="gallery" class="gallery">
+        <h2>農場畫廊</h2>
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="image/farm1.jpg" alt="農場景色">
+                <div class="caption">美麗的農場景色</div>
+            </div>
+            <div class="gallery-item">
+                <img src="image/farm2.jpg" alt="動物互動">
+                <div class="caption">溫馨的動物互動</div>
+            </div>
+            <div class="gallery-item">
+                <img src="image/farm3.jpg" alt="豐收的果實">
+                <div class="caption">滿滿的豐收果實</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 聯絡我們區 -->
+    <footer id="contact" class="contact">
+        <h2>聯絡我們</h2>
+        <div class="buttons">
+            <a href="#traceability" class="button">產銷履歷</a>
+            <a href="#contact" class="button">聯絡我們</a>
+            <a href="#order" class="button">立即下單</a>
+        </div>
+        <p>地址：台灣幸福鄉123號</p>
+        <p>電話：(02)1234-5678</p>
+        <p>Email: happyfarm@example.com</p>
+    </footer>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentIndex = 0;
+
+        function showNextSlide() {
+            slides[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % slides.length;
+            slides[currentIndex].classList.add('active');
+        }
+
+        setInterval(showNextSlide, 3000);
+    </script>
+</body>
+</html>
