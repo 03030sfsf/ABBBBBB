@@ -102,16 +102,16 @@
     text-align: center;
 }
 
-
-/* 卡片容器使用 Flexbox 來並排顯示 */
+/* 卡片容器 */
 .product-cards-container {
     display: flex;
-    flex-wrap: wrap; /* 讓卡片在小螢幕上換行 */
-    justify-content: center; /* 使卡片在容器中居中 */
-    gap: 20px; /* 卡片之間的間距 */
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 20px; 
+    margin: -10px;
 }
 
-/* 單一卡片樣式 */
+/* 卡片樣式 */
 .product-card {
     background: white;
     border-radius: 15px;
@@ -120,18 +120,23 @@
     width: calc(33.333% - 20px);
     position: relative;
     transition: transform 0.3s ease-in-out;
-    
+    margin: 10px;
 }
 
 /* 卡片圖片樣式 */
 .product-image {
     width: 100%;
-    height: 300px; /* 調整高度，使文字背景和圖片不衝突 */
+    height: 300px; 
     object-fit: cover;
     transition: transform 0.5s ease-in-out;
 }
 
-/* 初始狀態：背景透明，文字隱藏 */
+/* 懸停效果 */
+.product-card:hover .product-image {
+    transform: scale(1.1);
+}
+
+/* 產品資訊區塊 */
 .product-info {
     position: absolute;
     bottom: 0;
@@ -144,18 +149,10 @@
     transition: background 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
-/* 懸停時：黑色漸層與文字淡入 */
 .product-card:hover .product-info {
     background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent); 
     opacity: 1; 
 }
-
-
-/* 懸停時圖片放大 */
-.product-card:hover .product-image {
-    transform: scale(1.1);
-}
-
 
 /* 卡片標題和描述文字樣式 */
 .product-info h3 {
@@ -164,6 +161,19 @@
 
 .product-info p {
     margin-bottom: 0;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .product-card {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 600px) {
+    .product-card {
+        width: 100%;
+    }
 }
 
 
