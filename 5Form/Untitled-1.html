@@ -96,11 +96,12 @@
             color: #b0f4b0;
         }
 
-        /* 當季農產品區樣式 */
+/* 當季農產品區樣式 */
 .seasonal-products {
     padding: 50px 20px;
     text-align: center;
 }
+
 
 /* 卡片容器使用 Flexbox 來並排顯示 */
 .product-cards-container {
@@ -116,7 +117,7 @@
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 45%;
+    width: calc(33.333% - 20px);
     position: relative;
     transition: transform 0.3s ease-in-out;
     
@@ -130,11 +131,6 @@
     transition: transform 0.5s ease-in-out;
 }
 
-/* 懸停時圖片放大，並確保不影響文字 */
-.product-card:hover .product-image {
-    transform: scale(1.1);
-}
-
 /* 初始狀態：背景透明，文字隱藏 */
 .product-info {
     position: absolute;
@@ -142,18 +138,18 @@
     left: 0;
     width: 100%;
     padding: 20px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));  /* 完全透明 */
     color: white;
     box-sizing: border-box;
-    opacity: 0;  /* 文字與背景透明 */
+    opacity: 0; 
     transition: background 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 /* 懸停時：黑色漸層與文字淡入 */
 .product-card:hover .product-info {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));  /* 黑色漸層淡入 */
-    opacity: 1;  /* 文字與背景完全顯示 */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent); 
+    opacity: 1; 
 }
+
 
 /* 懸停時圖片放大 */
 .product-card:hover .product-image {
@@ -161,15 +157,15 @@
 }
 
 
-/* 卡片標題樣式 */
+/* 卡片標題和描述文字樣式 */
 .product-info h3 {
     margin-top: 0;
 }
 
-/* 卡片描述文字樣式 */
 .product-info p {
     margin-bottom: 0;
 }
+
 
 /* 手機視圖優化：當寬度小於 600px 時，每張卡片占滿整行 */
 @media (max-width: 600px) {
