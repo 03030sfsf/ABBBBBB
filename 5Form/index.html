@@ -16,17 +16,17 @@
         }
 
         /* Hero 區塊樣式 */
-        .hero {
-            position: relative;
-            background: url('image/farm-hero.jpg') no-repeat center center/cover;
-            color: white;
-            display: flex;
-            justify-content: center; /* 水平置中 */
-            align-items: center; /* 垂直置中 */
-            flex-direction: column;
-            padding: 150px 20px; /* 增加上下內邊距，讓背景高度更高 */
-            min-height: 40vh; /* 保證背景至少占據40%的可視區域高度 */
-        }
+        .hero {␊
+            position: relative;␊
+            background: url('image/farm1.jpg') no-repeat center center/cover;
+            color: white;␊
+            display: flex;␊
+            justify-content: center; /* 水平置中 */␊
+            align-items: center; /* 垂直置中 */␊
+            flex-direction: column;␊
+            padding: 150px 20px; /* 增加上下內邊距，讓背景高度更高 */␊
+            min-height: 40vh; /* 保證背景至少占據40%的可視區域高度 */␊
+        }␊
 
         .hero h1, .hero p {
             z-index: 2;
@@ -52,301 +52,7 @@
             z-index: 1;
         }
 
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .slide.active {
-            opacity: 1;
-        }
-
-        /* 導航區樣式 */
-        .navigation {
-            background: #364d36;
-            color: white;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        .navigation ul {
-            list-style: none;
-            margin: 0;
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-        }
-        .navigation li {
-            margin: 0 20px;
-        }
-        .navigation a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-        .navigation a:hover {
-            color: #b0f4b0;
-        }
-
-/* 當季農產品區樣式 */
-.seasonal-products {
-    padding: 50px 20px;
-    text-align: center;
-}
-
-/* 卡片容器 */
-.product-cards-container {
-    display: flex;
-    flex-wrap: wrap; 
-    justify-content: center; 
-    gap: 20px; 
-    margin: -10px;
-}
-
-/* 卡片樣式 */
-.product-card {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: calc(33.333% - 20px);
-    position: relative;
-    transition: transform 0.3s ease-in-out;
-    margin: 10px;
-}
-
-/* 卡片圖片樣式 */
-.product-image {
-    width: 100%;
-    height: 300px; 
-    object-fit: cover;
-    transition: transform 0.5s ease-in-out;
-}
-
-/* 懸停效果 */
-.product-card:hover .product-image {
-    transform: scale(1.1);
-}
-
-/* 產品資訊區塊 */
-.product-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px;
-    color: white;
-    box-sizing: border-box;
-    opacity: 0; 
-    transition: background 0.5s ease-in-out, opacity 0.5s ease-in-out;
-}
-
-.product-card:hover .product-info {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent); 
-    opacity: 1; 
-}
-
-/* 卡片標題和描述文字樣式 */
-.product-info h3 {
-    margin-top: 0;
-}
-
-.product-info p {
-    margin-bottom: 0;
-}
-
-/* 響應式設計 */
-@media (max-width: 768px) {
-    .product-card {
-        width: calc(50% - 20px);
-    }
-}
-
-@media (max-width: 600px) {
-    .product-card {
-        width: 100%;
-    }
-}
-
-
-/* 手機視圖優化：當寬度小於 600px 時，每張卡片占滿整行 */
-@media (max-width: 600px) {
-    .product-card {
-        width: 100%; /* 手機螢幕上每張卡片佔滿整行 */
-    }
-}
-/* 文字標題和描述保留原樣式 */
-.product-info h3 {
-    margin-top: 0;
-}
-.product-info p {
-    margin-bottom: 0;
-}
-        /* 食農教育、特色、畫廊樣式 */
-        .about, .features, .gallery {
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .features ul, .gallery-container {
-            list-style: none;
-            padding: 0;
-        }
-        .features li {
-            margin: 10px 0;
-        }
-
-        /* 農場畫廊樣式 */
-        .gallery-container {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            width: 30%;
-            border-radius: 10px;
-            aspect-ratio: 16 / 9; /* 強制裁切為16:9比例 */
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 裁切圖片內容使其填滿 */
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        .caption {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translate(-50%, 100%); /* 橫向置中 */
-            width: 100%;
-            background: linear-gradient(to top, rgb(0, 0, 0), transparent);
-            color: #ffffff;
-            padding: 30px; /* 調整間距 */
-            text-align: center;
-            font-weight: bold;
-            transition: transform 0.3s ease;
-        }
-        .gallery-item:hover .caption {
-            transform: translate(-50%, 0); /* 顯示文字 */
-            
-        }
-        .caption {
-    font-size: 1.5rem; /* 修改字體大小，1.2rem 為範例 */
-}
-
-
-        /* 聯絡我們區樣式 */
-        .contact {
-            background: #f4f4f4;
-            padding: 20px;
-            text-align: center;
-        }
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-        .button {
-            text-decoration: none;
-            color: white;
-            background: #668e66;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .button:hover {
-            background: #364d36;
-        }
-        body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
-
-/* 區塊容器 */
-.section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    padding: 30px;
-}
-
-/* 第一區塊 (正常排列) */
-#section1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    padding: 30px;
-    flex-direction: row;
-}
-
-/* 第二區塊 (反向排列) */
-#section2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    padding: 30px;
-    flex-direction: row-reverse;
-}
-
-/* 圖片容器 */
-.image-box {
-    width: 500px; /* 圖片容器寬度 */
-    height: 350px; /* 圖片容器高度 */
-    border: 2px solid #2f4f4f;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    overflow: hidden; /* 確保圖片不會超出容器邊框 */
-}
-
-/* 圖片樣式 */
-.image-box img {
-    width: 100%; /* 確保圖片填滿容器 */
-    height: 100%; /* 確保圖片填滿容器 */
-    object-fit: cover; /* 保持圖片比例並裁剪多餘部分 */
-    border-radius: 10px;
-}
-
-
-/* 文字容器 */
-#section1 .text-box,
-#section2 .text-box {
-    max-width: 600px;
-    color: #2f4f4f;
-}
-
-#section1 .text-box h2,
-#section2 .text-box h2 {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-#section1 .text-box p,
-#section2 .text-box p {
-    font-size: 18px;
-    text-align: justify;
-}
+@@ -350,54 +350,53 @@
 
     </style>
 </head>
@@ -373,8 +79,7 @@
     </nav>
 
     <!-- 當季農產品區 -->
-    <section id="gallery" class="gallery">
-<section id="seasonal-products" class="seasonal-products">
+    <section id="seasonal-products" class="seasonal-products">
     <h2>當季盛產農產品</h2>
 
     <!-- 卡片容器，使用 Flexbox 來並排顯示卡片 -->
@@ -401,9 +106,7 @@
         <div class="product-card">
             <img src="image/product3.jpg" alt="西瓜圖片" class="product-image">
             <div class="product-info">
-                <h3>清涼解渴西瓜</h3>
-                <p>夏日清涼水果，多汁甜美，消暑解渴，營養豐富。</p>
-            </div>
+@@ -407,108 +406,101 @@
         </div>
     </div>
 </section>
@@ -430,14 +133,6 @@
             <li>適合全家人參觀的活動</li>
         </ul>
     </section>
-    <html lang="zh-TW">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>圖文佈局範例</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
         <!-- 第一區塊 -->
         <div id="section1" class="section">
             <div class="image-box">
@@ -470,7 +165,8 @@
     
 
 
-    <!-- 農場畫廊 -->
+        <!-- 農場畫廊 -->
+        <section id="gallery" class="gallery">
         <h2>農場畫廊</h2>
         <div class="gallery-container">
             <div class="gallery-item">
@@ -485,8 +181,8 @@
                 <img src="image/farm3.jpg" alt="豐收的果實">
                 <div class="caption">滿滿的豐收果實</div>
             </div>
-        </div>
-    </section>
+        </div>␊
+    </section>␊
 
     <!-- 聯絡我們區 -->
     <footer id="contact" class="contact">
@@ -512,6 +208,3 @@
         }
 
         setInterval(showNextSlide, 3000);
-    </script>
-</body>
-</html>
